@@ -4,10 +4,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Encargado del mercado</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/datepicker3.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('/css/datepicker3.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('/css/styles.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('/css/tabla.css') }}">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	@yield('stilos')
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -36,7 +43,7 @@
 				<img src="" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">fulanito de tal</div>
+				<div class="profile-usertitle-name">Cristian Valencia</div>
 				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 			</div>
 			<div class="clear"></div>
