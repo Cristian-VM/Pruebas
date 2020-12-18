@@ -1,43 +1,47 @@
 @extends('layout.general')
-@section('breadcum')
-<li class="active">Cuenta</li>    
+
+@section('breadcumb')
+<li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
+<li class="breadcrumb-item"><a href="/Categorias">Categorias</a></li>
+<li class="breadcrumb-item active"  >Editar</li>
 @endsection
-@section('menu')
-<ul class="nav menu">
-    <li class="active">
-        <a href="#"><em class="fa fa-dashboard">&nbsp;</em>Sucesos</a>
-    </li>
-    <li><a href="#"><em class="fa fa-calendar">&nbsp;</em>Propuestas</a></li>
-    <li><a href="#"><em class="fa fa-bar-chart">&nbsp;</em>Preguntas</a></li>
-    <li><a href="#"><em class="fa fa-toggle-off">&nbsp;</em>Estado de cuenta</a></li>
-    <li><a href="#"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
-</ul>
-@endsection
+
 @section('content')
-     
-</style>
-</head>
-<body>
-<div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
-		<h2>EDITAR</h2>
-		
-     
-        <div class="form-group">
-        	<input type="Nombre de la sección:" class="form-control" name="Nombre de la sección" placeholder="Nombre de la sección" required="required">
-        </div>
-		<div class="form-group">
-            <input type="Cantidad" class="form-control" name="Cantidad" placeholder="Cantidad" required="required">
-        </div>
-		<div class="form-group">
-            <input type="Discripcion de la sección " class="form-control" name="Discripcion de la sección " placeholder="Discripcion de la sección " required="required">
-        </div>     
-   
-       
-		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Aceptar</button>
-        </div>
-    </form>
-	
-</body>
+<form action="/Categorias/{{$categoria->id}}" method="post" enctype="multipart/form-data" >
+    @csrf
+    @method('PUT')
+    <div class="form-group">
+        <label for="nombre">Nombre de la categoria:</label>
+        <input id="nombre" type="text" name="nombre" class="form-control" value="{{$categoria->nombre}}">
+    </div>
+
+    <div class="form-group">
+        <label for="a_materno">Descripcion de la categoria:</label>
+        <textarea class="form-control" name="descripcion" rows="5">{{$categoria->descripcion}}</textarea>        
+    </div>
+    <div class="form-group">
+        <label for="imagen">Imagen de la categoria:</label>
+        <img src="/secciones/{{$categoria->imagen}}" alt="" width="200" class="img-thumnail">
+        <input type="file" name="imagen" id="imagen">
+    </div>
+    <div class="form-group">
+        <label >Activa:</label>
+        <select name="activa">
+            @if ($categoria->activa == 0 )
+                <option selected value="0">NO</option>
+            @else
+                <option value="0">NO</option>
+            @endif
+            @if ($categoria->activa == 1 )
+                <option selected value="1">SI</option>
+            @else
+                <option value="1">SI</option>
+            @endif
+        </select>
+    </div>  
+    <input type="submit" class="btn btn-primary" value="Enviar">
+</form>
+
+  
+
 @endsection

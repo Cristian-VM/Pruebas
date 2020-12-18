@@ -1,393 +1,125 @@
 @extends('layout.general')
-@section('breadcum')
-<li class="active">Cuenta</li>    
+
+
+@section('breadcumb')
+<li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
+<li class="breadcrumb-item"><a href="Categorias">Categorias</a></li>
+<li class="breadcrumb-item active">Listar</li>
 @endsection
-@section('menu')
-<ul class="nav menu">
-    <li class="active">
-        <a href="#"><em class="fa fa-dashboard">&nbsp;</em>Sucesos</a>
-    </li>
-    <li><a href="#"><em class="fa fa-calendar">&nbsp;</em>Propuestas</a></li>
-    <li><a href="#"><em class="fa fa-bar-chart">&nbsp;</em>Preguntas</a></li>
-    <li><a href="#"><em class="fa fa-toggle-off">&nbsp;</em>Estado de cuenta</a></li>
-    <li><a href="#"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
-</ul>
-@endsection
+
 @section('content')
-   <style>
-    body {
-        color: #566787;
-		background: #f5f5f5;
-		font-family: 'Varela Round', sans-serif;
-		font-size: 13px;
-	}
-	.table-responsive {
-        margin: 30px 0;
-    }
-	.table-wrapper {
-		min-width: 1000px;
-        background: #fff;
-        padding: 20px 25px;
-		border-radius: 3px;
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    }
-	.table-title {        
-		padding-bottom: 15px;
-		background: #435d7d;
-		color: #fff;
-		padding: 16px 30px;
-		margin: -20px -25px 10px;
-		border-radius: 3px 3px 0 0;
-    }
-    .table-title h2 {
-		margin: 5px 0 0;
-		font-size: 24px;
-	}
-	.table-title .btn-group {
-		float: right;
-	}
-	.table-title .btn {
-		color: #fff;
-		float: right;
-		font-size: 13px;
-		border: none;
-		min-width: 50px;
-		border-radius: 2px;
-		border: none;
-		outline: none !important;
-		margin-left: 10px;
-	}
-	.table-title .btn i {
-		float: left;
-		font-size: 21px;
-		margin-right: 5px;
-	}
-	.table-title .btn span {
-		float: left;
-		margin-top: 2px;
-	}
-    table.table tr th, table.table tr td {
-        border-color: #e9e9e9;
-		padding: 12px 15px;
-		vertical-align: middle;
-    }
-	table.table tr th:first-child {
-		width: 60px;
-	}
-	table.table tr th:last-child {
-		width: 100px;
-	}
-    table.table-striped tbody tr:nth-of-type(odd) {
-    	background-color: #fcfcfc;
-	}
-	table.table-striped.table-hover tbody tr:hover {
-		background: #f5f5f5;
-	}
-    table.table th i {
-        font-size: 13px;
-        margin: 0 5px;
-        cursor: pointer;
-    }	
-    table.table td:last-child i {
-		opacity: 0.9;
-		font-size: 22px;
-        margin: 0 5px;
-    }
-	table.table td a {
-		font-weight: bold;
-		color: #566787;
-		display: inline-block;
-		text-decoration: none;
-		outline: none !important;
-	}
-	table.table td a:hover {
-		color: #2196F3;
-	}
-	table.table td a.edit {
-        color: #FFC107;
-    }
-    table.table td a.delete {
-        color: #F44336;
-    }
-    table.table td i {
-        font-size: 19px;
-    }
-	table.table .avatar {
-		border-radius: 50%;
-		vertical-align: middle;
-		margin-right: 10px;
-	}
-    .pagination {
-        float: right;
-        margin: 0 0 5px;
-    }
-    .pagination li a {
-        border: none;
-        font-size: 13px;
-        min-width: 30px;
-        min-height: 30px;
-        color: #999;
-        margin: 0 2px;
-        line-height: 30px;
-        border-radius: 2px !important;
-        text-align: center;
-        padding: 0 6px;
-    }
-    .pagination li a:hover {
-        color: #666;
-    }	
-    .pagination li.active a, .pagination li.active a.page-link {
-        background: #03A9F4;
-    }
-    .pagination li.active a:hover {        
-        background: #0397d6;
-    }
-	.pagination li.disabled i {
-        color: #ccc;
-    }
-    .pagination li i {
-        font-size: 16px;
-        padding-top: 6px
-    }
-    .hint-text {
-        float: left;
-        margin-top: 10px;
-        font-size: 13px;
-    }    
-	/* Custom checkbox */
-	.custom-checkbox {
-		position: relative;
-	}
-	.custom-checkbox input[type="checkbox"] {    
-		opacity: 0;
-		position: absolute;
-		margin: 5px 0 0 3px;
-		z-index: 9;
-	}
-	.custom-checkbox label:before{
-		width: 18px;
-		height: 18px;
-	}
-	.custom-checkbox label:before {
-		content: '';
-		margin-right: 10px;
-		display: inline-block;
-		vertical-align: text-top;
-		background: white;
-		border: 1px solid #bbb;
-		border-radius: 2px;
-		box-sizing: border-box;
-		z-index: 2;
-	}
-	.custom-checkbox input[type="checkbox"]:checked + label:after {
-		content: '';
-		position: absolute;
-		left: 6px;
-		top: 3px;
-		width: 6px;
-		height: 11px;
-		border: solid #000;
-		border-width: 0 3px 3px 0;
-		transform: inherit;
-		z-index: 3;
-		transform: rotateZ(45deg);
-	}
-	.custom-checkbox input[type="checkbox"]:checked + label:before {
-		border-color: #03A9F4;
-		background: #03A9F4;
-	}
-	.custom-checkbox input[type="checkbox"]:checked + label:after {
-		border-color: #fff;
-	}
-	.custom-checkbox input[type="checkbox"]:disabled + label:before {
-		color: #b8b8b8;
-		cursor: auto;
-		box-shadow: none;
-		background: #ddd;
-	}
-	/* Modal styles */
-	.modal .modal-dialog {
-		max-width: 400px;
-	}
-	.modal .modal-header, .modal .modal-body, .modal .modal-footer {
-		padding: 20px 30px;
-	}
-	.modal .modal-content {
-		border-radius: 3px;
-	}
-	.modal .modal-footer {
-		background: #ecf0f1;
-		border-radius: 0 0 3px 3px;
-	}
-    .modal .modal-title {
-        display: inline-block;
-    }
-	.modal .form-control {
-		border-radius: 2px;
-		box-shadow: none;
-		border-color: #dddddd;
-	}
-	.modal textarea.form-control {
-		resize: vertical;
-	}
-	.modal .btn {
-		border-radius: 2px;
-		min-width: 100px;
-	}	
-	.modal form label {
-		font-weight: normal;
-	}	
-</style>
+@if (session('mensaje'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ session('mensaje') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<a href="Categorias/create" class="btn btn-primary form-control" >Agregar Categoria</a>
+<table border="1" class="table table-striped" id="tbl_categorias">
+<thead class="thead-dark">
+        <th>Nombre</th>
+        <th>Productos</th>
+        <th>Acciones</th>
+</thead>
+<tbody class="thead-light">
+@forelse ($categorias as $categoria)
+    <tr id="{{$categoria->id}}">
+        <td>{{$categoria->nombre}}</td>
+        <td>{{$categoria->concesionados->count()}}</td>
+        <td>
+            <a href="/Categorias/{{$categoria->id}}/edit" class="btn btn-success">Editar</a>
+            <a href="/Categorias/{{$categoria->id}}" class="btn btn-warning">Mostrar</a>
+            <form action="/Categorias/{{$categoria->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>    
+            <button type="button" class="btn btn-danger btndel">Borrar</button>
+        </td>
+    </tr>
+@empty
+    <tr>
+        <td colspan="3">Sin categorias registradas</td>
+    </tr>
+@endforelse
+</tbody> 
+</table>
+<form class="form-inline">
+    <label class="sr-only" for="nuevo_nombre">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="nuevo_nombre" placeholder="Nueva categoria....">
+    <button type="button" class="btn btn-primary mb-2" id="btnadd">AGREGAR</button>
+</form>
+
+@endsection
+
+@section('escripts')
 <script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
+$().ready( function(){
+    $("#btnadd").click(function() {
+        axios.post('/_Categorias/' , {
+                _token: '{{ csrf_token() }}',
+                nombre: $("#nuevo_nombre").val(),
+                descripcion:".",
+        })
+        .then(function (response) {
+            var token = '{{ csrf_token() }}';
+            var fila = '';
+            fila += '    <tr id="' + response.data.id + '">';
+            fila += '        <td>' + response.data.nombre + '</td>';
+            fila += '        <td>0</td>';
+            fila += '        <td>';
+            fila += '            <a href="/Categorias/' + response.data.id + '/edit" class="btn btn-success">Editar</a>';
+            fila += '            <a href="/Categorias/' + response.data.id + '" class="btn btn-warning">Mostrar</a>';
+            fila += '            <form action="/Categorias/' + response.data.id + '" method="post" style="display: inline;"  onsubmit="return confirm(\'Desea eliminar\');">';
+            fila += '                <input type="hidden" name="_token" value="' + token + '">';
+            fila += '                <input type="hidden" name="_method" value="DELETE">';
+            fila += '                <button type="submit" class="btn btn-danger">Eliminar</button>';
+            fila += '            </form>';
+            fila += '           <button type="button" class="btn btn-danger btndel">Borrar</button>';
+            fila += '        </td>';
+            fila += '    </tr>';
+            tabla = $("#tbl_categorias").append(fila);
+            //.text(response.data.equipo);
+            console.log(response);
+        })
+        .catch(function (error) {
+            if(error.response.status==401)alert("Usted no ha iniciado en el sistema");
+            if(error.response.status==500)alert(error.response.data.message);
+            else alert(error.response.data.error);
+            console.log(error);
+        });
+    });
+
+    $("#tbl_categorias").on('click','.btndel',function() {
+        if(confirm('Desea eliminar la categoria llamada ' + this.parentElement.parentElement.firstElementChild.innerText )){
+            axios.delete( '/_Categorias/' + this.parentElement.parentElement.id , {
+                _token: '{{ csrf_token() }}'
+            })
+            .then(function (response) {                
+                $("tr#" + response.data.id ).remove();
+            //.text(response.data.equipo);
+                console.log(response);
+            })
+            .catch(function (error) {
+                if(error.response.status==401)alert("Usted no ha iniciado en el sistema");
+                if(error.response.status==500)alert(error.response.data.message);
+                else alert(error.response.data.error);
+                console.log(error);
+            });
+        }
+    }); 
 });
 </script>
-<div class="table-responsive">
-			<div class="table-wrapper">
-				<div class="table-title">
-					<div class="row">
-						<div class="col-xs-6">
-							<h2>AGREGAR <b>CATEGORIAS</b></h2>
-						</div>
-						<div class="col-xs-4">
-							<a href="{{ url('/Categorias/create') }}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>crear nueva categoria</span></a>
-						</div>						
-					</div>
-				</div>
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Nombre</th>
-							<th></th>
-							<th>Productos</th>
-							<th></th>
-							<th>Actiones</th>
-                                                        <th></th>
-                                                       
-
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								
-							</td>
-							<td>Electronica</td>
-							<td></td>
-							<td>3</td>
-							<th></th>
-							<td>
-								<a href="{{ url('/Categorias/1/edit') }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                                                <a href="{{ url('/Categorias/1/show') }}" class="Ver" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Ver">&#xe8f4;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Borrar">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								
-							</td>
-							<td>Electrodimestico</td>
-							<td></td>
-							<td>3</td>
-							<th></th>
-							<td>
-								<a href="{{ url('/Categorias/2/edit') }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                                                <a href="{{ url('/Categorias/2/show') }}" class="Ver" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Ver">&#xe8f4;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Borrar">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								
-							</td>
-							<td>Ropa</td>
-							<td></td>
-							<td>3</td>
-							<th></th>							
-                                                        <td>
-								<a href="{{ url('/Categorias/3/edit') }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                                                                <a href="{{ url('/Categorias/3/show') }}" class="Ver" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Ver">&#xe8f4;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Borrar">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								
-							</td>
-							<td>Frutas y Verdura</td>
-							<td>
-								
-							</td>
-							<td>3</td>
-							<th></th>
-							<td>
-								<a href="{{ url('/Categorias/4/edit') }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                                <a href="{{ url('/Categorias/4/show') }}" class="Ver" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Ver">&#xe8f4;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>					
-						<tr>
-							<td>
-								
-							</td>
-							<td>Linea Blanca</td><td>
-								
-							</td>
-							
-							<td>3</td>
-							<th></th>
-							<td>
-								<a href="{{ url('/Categorias/5/edit') }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                                <a href="{{ url('/Categorias/4/edit') }}" class="ver" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Ver">&#xe8f4;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr> 
-					</tbody>
-				</table>
-				
-		</div>        
-    </div>
-
-    <div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Borrar Categorias</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>¿Está seguro de que desea eliminar estos registros?</p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="submit" class="btn btn-danger" value="Borrar">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
 @endsection
+
